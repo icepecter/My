@@ -1,0 +1,21 @@
+// 코루틴을 중간에 멈춰야 하는 경우 따로 밖에서 null로 선언해두고 
+// 시작 할시에 다시 코루틴을 받아옴으로 시작한다.
+//
+//
+//
+
+IEnumerator moveCorutine = null;
+moveCorutine = MoveCorutine();
+StopCoroutine(moveCorutine);
+
+ IEnumerator MoveCorutine()
+    {
+        Vector3 tPos = floorHit.point;
+        while (true)
+        {
+            float dLength = Vector3.Distance(player.position, tPos);
+            if (dLength < 0.1f) yield break;
+            player.position = Vector3.MoveTowards(player.position, tPos, orgSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }

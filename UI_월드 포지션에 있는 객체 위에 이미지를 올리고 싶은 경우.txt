@@ -1,0 +1,4 @@
+// 단점은 카메라의 비율에 맞춰 값을 전달 해주기 때준에
+// 카메라 구도가 살짝 몇 f 정도 차이나는 것은 상관 없는데 몇 십 f 차이가 나면 씽크가 안맞으므로 주의
+
+tagTr.position = Camera.main.WorldToScreenPoint(playerTr.position + new Vector3(0, Camera.main.transform.position.y / 3, 0F));
