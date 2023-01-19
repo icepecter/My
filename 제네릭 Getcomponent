@@ -1,0 +1,17 @@
+    private void TryComponent<T> (ref T value) where T : Component
+    { 
+        if(value == null)
+        {
+            value = GetComponent<T>();
+
+            if(value == null)
+            { 
+                value = gameObject.AddComponent<T>();
+
+                if(value == null)
+                { 
+                    Debug.Log("GetComponet - Error");
+                }
+            }
+        }
+    }
