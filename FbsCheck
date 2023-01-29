@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Utility : MonoBehaviour
+{
+    [Header("FBS")]
+    [SerializeField] private  Rect _fbsRect      = new Rect(10, 10, 1920 , 1080);      
+    [SerializeField] private   int _fbsFontSize  = 30;
+    [SerializeField] private Color _fbsFontColor = Color.green;
+
+    private GUIStyle _fpsGuiStyle = new GUIStyle();
+    private    float _fps;
+    private    float _ms;
+
+    private string GetFbs()
+    {
+        _fps = 1.0f / Time.deltaTime;
+        _ms = Time.deltaTime * 1000.0f;
+
+        _fpsGuiStyle.fontSize = _fbsFontSize;
+        _fpsGuiStyle.normal.textColor = _fbsFontColor;
+
+        return string.Format("{0:N1} FPS ({1:N1}ms)", _fps, _ms);
+    }
+
+    private void OnGUI()
+    {
+        GUI.Label(_fbsRect, GetFbs(), _fpsGuiStyle);
+    }
+}
